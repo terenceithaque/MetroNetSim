@@ -1,5 +1,5 @@
 """main.py represents the core application and handles the main application window."""
-from PyQt6.QtWidgets import QApplication, QMainWindow
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt6.QtGui import QAction
 from network import *
 
@@ -39,7 +39,10 @@ class MainAppWindow(QMainWindow):
     def new_network(self) -> None:
         """Creates a new metro network graph based on informations provided by the user."""
 
-        self.current_network = Network()
+        save_location, _ = QFileDialog.getSaveFileName(self, "Select save location for your network", "", "Network database (*.db)")
+
+        if save_location:
+            self.current_network = Network(save_location)
             
 
 
