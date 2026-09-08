@@ -2,6 +2,7 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
 from PyQt6.QtGui import QAction
 from network import *
+import popups.new_station as new_station
 
 
 class MainAppWindow(QMainWindow):
