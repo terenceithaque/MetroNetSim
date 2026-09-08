@@ -32,6 +32,18 @@ class MainAppWindow(QMainWindow):
         file_menu.addAction(create_network_action)
         file_menu.addAction(open_network_action)
 
+        # Create the "Network" menu
+        network_menu = menu_bar.addMenu("Network")
+
+        # Set the actions of the "Network" menu
+
+        add_line_action = QAction("Add a new line...", self)
+
+        add_station_action = QAction("Add a new station...", self)
+
+        network_menu.addAction(add_line_action)
+        network_menu.addAction(add_station_action)
+
 
         self.current_network = None # Currently opened network
 

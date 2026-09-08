@@ -12,7 +12,7 @@ class Network:
         self.file = file
         print("Network file: ", self.file)
 
-        self.connection = sqlite3.Connection(self.file)
+        self.connection = sqlite3.connect(self.file)
         self.cursor = sqlite3.Cursor(self.connection)
 
         # Create the internal graph
