@@ -41,6 +41,7 @@ class MainAppWindow(QMainWindow):
         add_line_action = QAction("Add a new line...", self)
 
         add_station_action = QAction("Add a new station...", self)
+        add_station_action.triggered.connect(self.create_new_station)
 
         network_menu.addAction(add_line_action)
         network_menu.addAction(add_station_action)
@@ -56,6 +57,12 @@ class MainAppWindow(QMainWindow):
 
         if save_location:
             self.current_network = Network(save_location)
+
+
+    def create_new_station(self) -> None:
+        """Displays a popup allowing the user to create a new station on the network."""
+        create_station = new_station.AddNewStationPopup(self)
+        create_station.exec()        
             
 
 
