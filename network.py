@@ -17,3 +17,6 @@ class Network:
 
         # Create the internal graph
         self.graph = nx.Graph()
+
+
+        

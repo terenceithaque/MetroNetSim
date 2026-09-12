@@ -26,7 +26,10 @@ class AddNewStationPopup(QDialog):
         self.lines_edit.setPlaceholderText("ex: 1,2,3,4")
 
         self.ok_button = QPushButton("Add station")
+        self.ok_button.clicked.connect(lambda: self.handle_close(ok=True))
+
         self.cancel_button = QPushButton("Cancel")
+        self.cancel_button.clicked.connect(lambda: self.handle_close(ok=False))
 
         self.parent_layout.addWidget(self.station_name_label, 0, 0)
         self.parent_layout.addWidget(self.station_name_edit, 0, 1)
@@ -34,3 +37,13 @@ class AddNewStationPopup(QDialog):
         self.parent_layout.addWidget(self.lines_edit, 1, 1)
         self.parent_layout.addWidget(self.ok_button, 2, 0)
         self.parent_layout.addWidget(self.cancel_button, 2, 1)
+
+
+    def handle_close(self, ok:bool=True) -> None:
+        """Handles the closure of the popup depending on which button was clicked."""
+
+        if ok:
+            self.accept()
+
+        else:
+            self.reject()        

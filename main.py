@@ -1,5 +1,5 @@
 """main.py represents the core application and handles the main application window."""
-from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog
+from PyQt6.QtWidgets import QApplication, QMainWindow, QFileDialog, QDialog
 from PyQt6.QtGui import QAction
 from network import *
 import popups.new_station as new_station
@@ -62,7 +62,13 @@ class MainAppWindow(QMainWindow):
     def create_new_station(self) -> None:
         """Displays a popup allowing the user to create a new station on the network."""
         create_station = new_station.AddNewStationPopup(self)
-        create_station.exec()        
+
+
+        if create_station.exec() == QDialog.DialogCode.Accepted:
+            print("Creating a new station")
+
+        else:
+            print("Station creation cancelled")          
             
 
 
