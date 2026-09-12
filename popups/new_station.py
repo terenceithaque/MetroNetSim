@@ -80,7 +80,9 @@ class AddNewStationPopup(QDialog):
                     self,
                     "Invalid fields", 
                     "Some fields are not filled as expected.",
-                    buttons=QMessageBox.StandardButton.Ok)
+                    buttons=QMessageBox.StandardButton.Ok
+
+                )
 
                 self.station_name_edit.setText("")
                 self.lines_edit.setText("")    
