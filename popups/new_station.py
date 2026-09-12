@@ -39,11 +39,51 @@ class AddNewStationPopup(QDialog):
         self.parent_layout.addWidget(self.cancel_button, 2, 1)
 
 
+
+    def validate(self) -> bool:
+        """Returns a boolean indicating wether all text fields are filled as expected."""
+        station_name = self.station_name_edit.text()
+        lines = self.lines_edit.text().split(",")
+        print("Number of connecting lines: ", len(lines))
+
+
+        # Return false if no station name is provided
+        if len(station_name) == 0:
+            return False
+
+
+        # Return false if no line name or number is specified
+        elif lines == [""]:
+            return False
+
+        else:
+            # Checks if the station's name is not a number
+            return not station_name.isdigit()
+
+             
+
+
+            
+
+
     def handle_close(self, ok:bool=True) -> None:
-        """Handles the closure of the popup depending on which button was clicked."""
+        """Handles the closure of the popup depending on which button was clicked.\n
+        This will also display an error message if text fields are not filled correctly."""
 
         if ok:
-            self.accept()
+
+            if self.validate():
+                self.accept()
+
+            else:
+                QMessageBox.warning(
+                    self,
+                    "Invalid fields", 
+                    "Some fields are not filled as expected.",
+                    buttons=QMessageBox.StandardButton.Ok)
+
+                self.station_name_edit.setText("")
+                self.lines_edit.setText("")    
 
         else:
             self.reject()        
